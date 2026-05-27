@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+
+@font-face {
+  font-family: RedHat;
+  font-style: normal;
+  font-weight: 400 600 700;
+  font-display: swap;
+  src: url("/assets/fonts/RedHatText-VariableFont_wght.ttf") format("woff2");
+}
+
+@theme {
+  --color-Red: hsl(217, 91%, 50%);
+  --color-Green: hsl(199, 89%, 38%);
+  --color-Rose-50: hsl(210, 40%, 98%);
+  --color-Rose-100: hsl(214, 32%, 91%);
+  --color-Rose-300: hsl(213, 27%, 72%);
+  --color-Rose-400: hsl(215, 20%, 60%);
+  --color-Rose-500: hsl(215, 20%, 44%);
+  --color-Rose-900: hsl(222, 47%, 11%);
+
+  --breakpoint-desktop: 1440px;
+}
+
+body {
+  font-family: 'Commissioner', sans-serif;
+  background-color: var(--color-Rose-100);
+}
