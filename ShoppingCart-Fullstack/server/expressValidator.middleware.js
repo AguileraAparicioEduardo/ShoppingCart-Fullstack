@@ -32,6 +32,12 @@ const validateCreateProduct = [
     .isLength({ min: 2, max: 100 }).withMessage("Name must be between 2 and 100 characters")
     .trim(),
 
+  body("category")
+    .optional({ nullable: true })
+    .isString().withMessage("Category must be a string")
+    .isLength({ max: 50 }).withMessage("Category must be at most 50 characters")
+    .trim(),
+
   body("price")
     .notEmpty().withMessage("Price is required")
     .isFloat({ min: 0.01 }).withMessage("Price must be a positive number"),
@@ -39,6 +45,15 @@ const validateCreateProduct = [
   body("availability")
     .optional()
     .isBoolean().withMessage("Availability must be a boolean"),
+
+  body("image")
+    .optional({ nullable: true })
+    .isObject().withMessage("Image must be an object"),
+
+  body("image.thumbnail").optional().isString(),
+  body("image.mobile").optional().isString(),
+  body("image.tablet").optional().isString(),
+  body("image.desktop").optional().isString(),
 
   handleValidationErrors,
 ];
@@ -51,6 +66,12 @@ const validateUpdateProduct = [
     .isLength({ min: 2, max: 100 }).withMessage("Name must be between 2 and 100 characters")
     .trim(),
 
+  body("category")
+    .optional({ nullable: true })
+    .isString().withMessage("Category must be a string")
+    .isLength({ max: 50 }).withMessage("Category must be at most 50 characters")
+    .trim(),
+
   body("price")
     .optional()
     .isFloat({ min: 0.01 }).withMessage("Price must be a positive number"),
@@ -58,6 +79,10 @@ const validateUpdateProduct = [
   body("availability")
     .optional()
     .isBoolean().withMessage("Availability must be a boolean"),
+
+  body("image")
+    .optional({ nullable: true })
+    .isObject().withMessage("Image must be an object"),
 
   handleValidationErrors,
 ];

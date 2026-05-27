@@ -51,9 +51,9 @@ const getProductById = async (req, res) => {
 // POST /api/products - Create new product
 const createProduct = async (req, res) => {
   try {
-    const { name, price, availability } = req.body;
+    const { name, category, price, availability, image } = req.body;
 
-    const product = await Product.create({ name, price, availability });
+    const product = await Product.create({ name, category, price, availability, image });
 
     res.status(201).json({
       success: true,
@@ -83,7 +83,7 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, price, availability } = req.body;
+    const { name, category, price, availability, image } = req.body;
 
     const product = await Product.findByPk(id);
 
@@ -94,7 +94,7 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    await product.update({ name, price, availability });
+    await product.update({ name, category, price, availability, image });
 
     res.status(200).json({
       success: true,
