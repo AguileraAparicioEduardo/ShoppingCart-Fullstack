@@ -2,6 +2,7 @@ import { useCart } from '../context/CartContext'
 
 export const CartItem = ({ name, price, quantity }) => {
   const { removeFromCart } = useCart()
+  const numericPrice = parseFloat(price)  // ← convierte a número
 
   return (
     <div className='border-b border-Rose-100 text-sm py-4'>
@@ -10,9 +11,9 @@ export const CartItem = ({ name, price, quantity }) => {
           <h3 className='font-semibold text-Rose-900'>{name}</h3>
           <div className='flex gap-2 mt-1'>
             <p className='text-Red font-semibold'>{quantity}x</p>
-            <p className='text-Rose-500'>@${price.toFixed(2)}</p>
+            <p className='text-Rose-500'>@${numericPrice.toFixed(2)}</p>
             <p className='font-semibold text-Rose-500'>
-              ${(price * quantity).toFixed(2)}
+              ${(numericPrice * quantity).toFixed(2)}
             </p>
           </div>
         </div>

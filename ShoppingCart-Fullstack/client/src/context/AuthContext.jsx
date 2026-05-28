@@ -3,8 +3,10 @@ import { createContext, useContext, useState } from 'react'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
   const [token, setToken] = useState(localStorage.getItem('token') || null)
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('user') || 'null')
+  )
 
   const login = async (email, password) => {
     const res = await fetch('http://localhost:4000/api/auth/login', {
@@ -17,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     setToken(data.token)
     setUser(data.user)
     localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(data.user))
     return data
   }
 
@@ -31,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     setToken(data.token)
     setUser(data.user)
     localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(data.user))
     return data
   }
 
@@ -38,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
     setToken(null)
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
   }
 
   return (

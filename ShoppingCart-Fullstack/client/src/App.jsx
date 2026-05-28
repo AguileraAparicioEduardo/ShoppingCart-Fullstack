@@ -23,16 +23,19 @@ function App() {
       <Route path='/' element={
         <PrivateRoute>
           <main className='flex justify-center'>
-            <section className='my-6 px-4 w-full'>
+            <section className='my-6 px-4 w-full max-w-[1400px]'>
 
-              {/* Header con nombre y logout */}
               <div className='flex justify-between items-center mb-6'>
-                <h1 className='text-[2.5rem] font-bold'>Desserts</h1>
+                <h1 className='text-[2.5rem] font-bold text-Rose-900'>
+                  Postres
+                </h1>
                 <div className='flex items-center gap-4'>
-                  <span className='text-Rose-500 text-sm'>Hola, {user?.name}</span>
+                  <span className='text-Rose-500 text-sm'>
+                    Hola, <span className='font-bold text-Rose-900'>{user?.name}</span>
+                  </span>
                   <button
                     onClick={logout}
-                    className='text-sm text-Red hover:underline cursor-pointer'
+                    className='text-sm text-Red hover:underline cursor-pointer font-semibold'
                   >
                     Cerrar sesión
                   </button>
