@@ -54,7 +54,10 @@ app.use(express.urlencoded({ extended: true }));
 // ──────────────────────────────────────────────
 // Routes
 // ──────────────────────────────────────────────
+const authRoutes = require('./auth.routes')
+
 app.use("/api/products", productRoutes);
+app.use('/api/auth', authRoutes)
 
 // Health check
 app.get("/api/health", (req, res) => {
