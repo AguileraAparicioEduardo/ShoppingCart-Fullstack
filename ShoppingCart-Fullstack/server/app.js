@@ -3,7 +3,12 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const productRoutes = require("./product.routes");
+const authRoutes = require("./auth.routes");
+const adminRoutes = require("./admin.routes");
+const uploadRoutes = require("./upload.routes");
 const { swaggerDocs } = require("./swagger");
+const path = require("path");
+
 
 const app = express();
 
@@ -49,15 +54,16 @@ if (process.env.NODE_ENV !== "test") {
 
 // Body parsers
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.urlencoded({ extended: true }));
 
 // ──────────────────────────────────────────────
 // Routes
 // ──────────────────────────────────────────────
-const authRoutes = require('./auth.routes')
-
+app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
-app.use('/api/auth', authRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/upload", uploadRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
